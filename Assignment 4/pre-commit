@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Get the current active branch name
+current_branch=$(git branch | grep '*' | sed 's/* //')
+
+# Only proceed if the current branch is "main"
+if [ "$current_branch" = "main" ]; then
+
+  # Print an informative message before running tests
+  echo "Running tests on branch: $current_branch"
+
+  # Execute the test script (replace "test.py" with the actual filename if different)
+  python test.py
+
+  # Check the exit status of the test execution
+  if [ $? -ne 0 ]; then
+    # Tests failed, print a warning message and exit with a non-zero status
+    echo "Tests FAILED! Fix errors before committing."
+    exit 1
+  else
+    # Tests passed, print a success message
+    echo "Tests PASSED."
+  fi
+fi
