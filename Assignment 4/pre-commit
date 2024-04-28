@@ -10,7 +10,7 @@ if [ "$current_branch" = "main" ]; then
   echo "Running tests on branch: $current_branch"
 
   # Execute the test script (replace "test.py" with the actual filename if different)
-  python test.py
+  python3 test.py
 
   # Check the exit status of the test execution
   if [ $? -ne 0 ]; then
